@@ -1,43 +1,43 @@
-RemapÓëLua
+Remapä¸Lua
 ==========
-ÔÚĞÂ°æ±¾Àï£¬luaÒÑ¿ÉÇ¶Èëµ½remap.configÀï£¬Ö§³Ö¸üÁé»îµÄ»ùÓÚhttp header±à³Ì
+åœ¨æ–°ç‰ˆæœ¬é‡Œï¼Œluaå·²å¯åµŒå…¥åˆ°remap.configé‡Œï¼Œæ”¯æŒæ›´çµæ´»çš„åŸºäºhttp headerç¼–ç¨‹
 
-ts-lua ½Ó¿ÚÎÄµµhttps://github.com/portl4t/ts-lua
+ts-lua æ¥å£æ–‡æ¡£https://github.com/portl4t/ts-lua
 
-### ÅäÖÃËµÃ÷
-Remap ¿ÉÖ§³ÖÅäÖÃLua HookµãµÄÎå¸ö½×¶Î
+### é…ç½®è¯´æ˜
+Remap å¯æ”¯æŒé…ç½®Lua Hookç‚¹çš„äº”ä¸ªé˜¶æ®µ
 
 * do_remap 
 
-        remapÇ°½×¶Î£¬¸Ã½×¶Î¿ÉÒÔĞŞ¸Ä´æ´¢key£¬¾Ü¾ø·şÎñµÈµÈ²Ù×÷
+        remapå‰é˜¶æ®µï¼Œè¯¥é˜¶æ®µå¯ä»¥ä¿®æ”¹å­˜å‚¨keyï¼Œæ‹’ç»æœåŠ¡ç­‰ç­‰æ“ä½œ
 
 * send_request
 
-        »ØÔ´·¢ËÍrequest ½×¶Î£¬¸Ã½×¶Î¿ÉÒÔ¶ÁÈ¡¡¢ĞŞ¸Ä»ØÔ´request header
+        å›æºå‘é€request é˜¶æ®µï¼Œè¯¥é˜¶æ®µå¯ä»¥è¯»å–ã€ä¿®æ”¹å›æºrequest header
 
 * read_response
 
-        ¶ÁÈ¡»ØÔ´response ½×¶Î£¬¸Ã½×¶Î¿ÉÒÔ¶ÁÈ¡¡¢ĞŞ¸Ä»ØÔ´½ÓÊÕµÄresponse header
+        è¯»å–å›æºresponse é˜¶æ®µï¼Œè¯¥é˜¶æ®µå¯ä»¥è¯»å–ã€ä¿®æ”¹å›æºæ¥æ”¶çš„response header
 
 * send_response
 
-        ·¢ËÍ¸øclient response ½×¶Î£¬¸Ã½×¶Î¿ÉÒÔ¶ÁÈ¡¡¢ĞŞ¸Ä·¢ËÍ¸øÓÃ»§response header
+        å‘é€ç»™client response é˜¶æ®µï¼Œè¯¥é˜¶æ®µå¯ä»¥è¯»å–ã€ä¿®æ”¹å‘é€ç»™ç”¨æˆ·response header
 
 * cache_lookup_complete
 
-        Cache ¶ÁÈ¡½×¶Î£¬¸Ã½×¶Î¿ÉÒÔÅĞ¶Ï¶Á³öµÄCache×´Ì¬£¬¶ÁÈ¡CacheÖĞµÄresponse headerµÈ
+        Cache è¯»å–é˜¶æ®µï¼Œè¯¥é˜¶æ®µå¯ä»¥åˆ¤æ–­è¯»å‡ºçš„CacheçŠ¶æ€ï¼Œè¯»å–Cacheä¸­çš„response headerç­‰
         
 
-### ÅäÖÃÊ¾Àı
+### é…ç½®ç¤ºä¾‹
 
-> ×¢£º Ò»¸öremap Àï¿ÉÒÔÊ¹ÓÃ¶à¸ö×´Ì¬£¬¶à¸ö×´Ì¬ÅäºÏ³ÉÒ»¸ö½Å±¾Ê¹ÓÃ
+> æ³¨ï¼š ä¸€ä¸ªremap é‡Œå¯ä»¥ä½¿ç”¨å¤šä¸ªçŠ¶æ€ï¼Œå¤šä¸ªçŠ¶æ€é…åˆæˆä¸€ä¸ªè„šæœ¬ä½¿ç”¨
 
 * do_remap
 
         http www.taobao.com {
             map / http://www.taobao.com.inner.taobao.com {
                 script do_remap {
-                    -- ÅĞ¶ÏUseragent ×öÌø×ª
+                    -- åˆ¤æ–­Useragent åšè·³è½¬
                     ts.ctx['is_forbidden'] = 0
                     local uagent = ts.client_request.header['User-Agent']
                     if string.find(uagent, 'haoyu') then
@@ -62,7 +62,7 @@ Remap ¿ÉÖ§³ÖÅäÖÃLua HookµãµÄÎå¸ö½×¶Î
         http www.taobao.com {
             map / http://www.taobao.com.inner.taobao.com {
                 script send_request {
-                    -- °Ñ»ØÔ´request Host ¸Ä³Éwww.tmall.com
+                    -- æŠŠå›æºrequest Host æ”¹æˆwww.tmall.com
                     ts.client_request.header['Host'] = 'www.tmall.com'
                 }
             }
@@ -74,7 +74,7 @@ Remap ¿ÉÖ§³ÖÅäÖÃLua HookµãµÄÎå¸ö½×¶Î
         http www.taobao.com {
             map / http://www.taobao.com.inner.taobao.com {
                 script read_response {
-                    -- °´ÕÕAccept-Test ×ö¶à¸±±¾»º´æ
+                    -- æŒ‰ç…§Accept-Test åšå¤šå‰¯æœ¬ç¼“å­˜
                     ts.server_response.header['Vary'] = "Accept-Test"
                 }
             }
@@ -85,7 +85,7 @@ Remap ¿ÉÖ§³ÖÅäÖÃLua HookµãµÄÎå¸ö½×¶Î
         http www.taobao.com {
             map / http://www.taobao.com.inner.taobao.com {
                 script send_response {
-                    -- Ìí¼ÓResponse Header
+                    -- æ·»åŠ Response Header
                     ts.client_response.header['Test'] = 'yes'
                 }
             }
@@ -96,9 +96,9 @@ Remap ¿ÉÖ§³ÖÅäÖÃLua HookµãµÄÎå¸ö½×¶Î
         http www.taobao.com {
             map / http://www.taobao.com.inner.taobao.com {
                 script cache_lookup_complete {
-                    -- »ñµÃCache ×´Ì¬
+                    -- è·å¾—Cache çŠ¶æ€
                     local cache_status = ts.http.get_cache_lookup_status()
-                    if cached_status == TS_LUA_CACHE_LOOKUP_HIT_FRESH then
+                    if TS_LUA_CACHE_LOOKUP_HIT_FRESH == cached_status then
                         ts.ctx['cstatus'] = 'hit'
                     else
                         ts.ctx['cstatus'] = 'miss'
@@ -106,7 +106,7 @@ Remap ¿ÉÖ§³ÖÅäÖÃLua HookµãµÄÎå¸ö½×¶Î
                 }
                 
                 script send_response {
-                    -- Ìí¼ÓCache×´Ì¬Í·
+                    -- æ·»åŠ CacheçŠ¶æ€å¤´
                     ts.client_response.header['Cache-Status'] = ts.ctx['cstatus']
                 }
             }
